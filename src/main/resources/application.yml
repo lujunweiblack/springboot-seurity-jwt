@@ -1,13 +1,15 @@
 server:
-  port: 80 #为了以后访问项目不用写端口号
-  context-path: / #为了以后访问项目不用写项目名
+  port: 8081
+
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://120.79.197.130:3307/testspring
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.2.188:3306/rbac_seurity?ssl=fasle
     username: root
-    password: 123
-  jpa:
-    hibernate:
-      ddl-auto: update  #数据库同步代码
-    show-sql: true      #dao操作时，显示sql语句
+    password: 123123
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.security.model
+  configuration:
+    mapUnderscoreToCamelCase: true
