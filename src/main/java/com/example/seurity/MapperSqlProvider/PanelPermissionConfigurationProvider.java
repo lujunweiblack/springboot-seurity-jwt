@@ -1,5 +1,7 @@
 package com.example.seurity.MapperSqlProvider;
 
+import com.example.seurity.model.SysPermission;
+
 /**
  * @author: lujunwei
  * @time: 13:43 2019/1/27
@@ -27,7 +29,25 @@ public class PanelPermissionConfigurationProvider {
                 "AND sp.id = srp.sys_permission_id\n" +
                 "AND sr.available = 1\n" +
                 "AND sp.available = 1\n" +
-                "AND sr. CODE IN ("+roles+")");
+                "AND sr. CODE IN (" + roles + ")");
+        return sql.toString();
+    }
+
+    public String dynamicMenuQueryByParent(String roles, SysPermission sysPermission) {
+        StringBuilder sql = new StringBuilder("SELECT DISTINCT\n" +
+                "\tsp.*\n" +
+                "FROM\n" +
+                "\tsys_role sr,\n" +
+                "\tsys_role_permission srp,\n" +
+                "\tsys_permission sp\n" +
+                "WHERE\n" +
+                "\tsrp.sys_role_id = sr.id\n" +
+                "AND sp.id = srp.sys_permission_id\n" +
+                "AND sr.available = 1\n" +
+                "AND sp.available = 1\n" +
+                "AND sr. CODE IN (" + roles + ")\n" +
+                "AND sp.parent_id = " + sysPermission.getParentId() +
+                "ORDER BY sp.sort asc;");
         return sql.toString();
     }
 }

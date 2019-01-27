@@ -25,4 +25,9 @@ public class PanelPermissionConfigurationServiceImpl implements PanelPermissionC
         List<SysPermission> sysPermissions = panelPermissionConfigurationMapper.querySysPermissionByRoles(roles);
         return sysPermissions;
     }
+
+    @Override
+    public List<SysPermission> dynamicMenuQueryByParent(String roles,SysPermission sysPermission) {
+        return panelPermissionConfigurationMapper.dynamicMenuQueryByParent(roles,sysPermission);
+    }
 }

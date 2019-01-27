@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,5 +55,19 @@ public class MenuCtrl {
         log.info("############ 父级菜单封装完毕 ##############");
 
        return ResultBean.resultInit(ResultBean.SUCCESS, new MenuVO(sysUser, sysPermissions));
+    }
+
+    @PostMapping("/dynamicMenuQueryByParent")
+    public String dynamicMenuQueryByParent(@RequestBody SysPermission sysPermission) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        List<String> strs = new ArrayList<>();
+        for (GrantedAuthority authority : authorities) {
+            strs.add(authority.getAuthority());
+        }
+
+        String roles = StringDataUtils.commaSpliceStr(strs, "'", "'", ",");
+        List<SysPermission> sysPermissions = panelPermissionConfigurationService.dynamicMenuQueryByParent(roles,sysPermission);
+        return ResultBean.resultInit(ResultBean.SUCCESS, sysPermissions);
     }
 }

@@ -15,4 +15,7 @@ public interface PanelPermissionConfigurationMapper {
 
     @SelectProvider(type = PanelPermissionConfigurationProvider.class, method = "querySysPermissionByRoles")
     List<SysPermission> querySysPermissionByRoles(String roles);
+
+    @SelectProvider(type = PanelPermissionConfigurationProvider.class, method = "dynamicMenuQueryByParent")
+    List<SysPermission> dynamicMenuQueryByParent(String roles,SysPermission sysPermission);
 }

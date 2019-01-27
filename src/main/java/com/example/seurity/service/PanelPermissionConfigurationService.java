@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface PanelPermissionConfigurationService {
     List<SysPermission> dynamicMenuQuery(String roles);
+
+    List<SysPermission> dynamicMenuQueryByParent(String roles,SysPermission sysPermission);
 }
