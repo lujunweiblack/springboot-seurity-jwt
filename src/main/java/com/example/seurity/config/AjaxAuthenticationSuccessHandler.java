@@ -19,11 +19,12 @@ import static com.example.seurity.model.ResultBean.SUCCESS;
 public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException{
-        log.info("############ 登录成功 ##############");
+    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
         User userDetails = (User) authentication.getPrincipal();
-        String jwtToken = JwtTokenUtil.generateToken(userDetails.getUsername(), 3000, "_secret");
-        httpServletResponse.getWriter().write(ResultBean.resultInit(SUCCESS,"Login Success!",jwtToken));
+        String jwtToken = JwtTokenUtil.generateToken(userDetails.getUsername(), 300000, "_secret");
+        log.info(jwtToken);
+        httpServletResponse.getWriter().write(ResultBean.resultInit(SUCCESS, "Login Success!", jwtToken));
+        log.info("############ 登录成功 ##############");
     }
 }
 

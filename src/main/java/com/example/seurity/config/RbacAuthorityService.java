@@ -40,6 +40,9 @@ public class RbacAuthorityService {
                     break;
                 }
             }
+            if(!hasPermission){
+                return true;
+            }
 
             if (hasPermission) {
                 //遍历当前用户所具有的权限
@@ -50,7 +53,7 @@ public class RbacAuthorityService {
                     for (GrantedAuthority authority : authorities) {
                         //用户角色        authority.getAuthority()
                         //路径需要的角色   sysRole.getRoleCode()
-                        if (authority.getAuthority().equals(sysRole.getRoleCode())) {
+                        if (authority.getAuthority().equals(sysRole.getCode())) {
                             return hasPermission;
                         }
                     }

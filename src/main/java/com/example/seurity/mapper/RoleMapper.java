@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface RoleMapper {
 
-    @Select("SELECT * FROM sys_role t1, sys_user_role t2 where t2.role_id = t1.role_id and t2.user_id = #{userId}")
+    @Select("SELECT * FROM sys_role t1, sys_user_role t2 where t2.sys_role_id = t1.id and t2.sys_user_id = #{userId}")
     List<SysRole> findRoleByUserId(long userId);
 }

@@ -3,6 +3,7 @@ package com.example.seurity.common;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -48,6 +49,11 @@ public class JwtTokenUtil {
         } catch (Exception e) {
         }
         return subject;
+    }
+
+    public static void main(String[] args) {
+         BCryptPasswordEncoder pe = new BCryptPasswordEncoder();
+        System.out.println(pe.encode("123123"));
     }
 
 }

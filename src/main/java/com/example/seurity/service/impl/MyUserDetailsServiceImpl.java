@@ -46,10 +46,11 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
             throw new UsernameNotFoundException(ResultBean.resultInit("error","用户不存在"));
         } else {
             try {
-                List<SysRole> roles = roleService.findRoleByUserId(sysUser.getUserId());
+                List<SysRole> roles = roleService.findRoleByUserId(sysUser.getId());
                 List<SimpleGrantedAuthority> simpleGrantedAuthorities = createAuthorities(roles);
                 return new User(sysUser.getUserCode(), sysUser.getPassWord(), simpleGrantedAuthorities);
             } catch (Exception e) {
+                e.printStackTrace();
                 log.info("############ 查询用户角色报错 ############");
                 throw new UsernameNotFoundException(ResultBean.resultInit("error","查询用户角色报错"));
             }
@@ -65,7 +66,7 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
     private List<SimpleGrantedAuthority> createAuthorities(List<SysRole> roles) {
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
         for (SysRole role : roles) {
-            simpleGrantedAuthorities.add(new SimpleGrantedAuthority(role.getRoleCode()));
+            simpleGrantedAuthorities.add(new SimpleGrantedAuthority(role.getCode()));
         }
         return simpleGrantedAuthorities;
     }

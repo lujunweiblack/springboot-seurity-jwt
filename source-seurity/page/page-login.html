@@ -78,7 +78,7 @@
             $.ajax({
             //几个参数需要注意一下
                 type: "post",//方法类型
-                url: "http://192.168.2.238:8081/authenticate",//url
+                url: "http://192.168.168.168:8081/authenticate",//url
                 data: {
                   "username":username,
                   "password":password
@@ -87,9 +87,10 @@
                     console.log(result);//打印服务端返回的数据(调试用)
                     var obj = JSON.parse(result)
                     if (obj.code == '10200') {
+                        sessionStorage.setItem("jwtToken",obj.jwtToken);
                         location.href='index.html';
                     }
-                    ;
+
                 },
                 error : function(e) {
                    console.log(e)

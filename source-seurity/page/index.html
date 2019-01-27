@@ -94,7 +94,7 @@
         <ul class="dropdown-menu settings-menu dropdown-menu-right">
           <li><a class="dropdown-item" href="#"  onclick="jump('page-user.html')"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
           <li><a class="dropdown-item" href="#"  onclick="jump('page-user.html')"><i class="fa fa-user fa-lg"></i> Profile</a></li>
-          <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+          <li><a class="dropdown-item" href="#" onclick="logoutFun()"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
         </ul>
       </li>
     </ul>
@@ -105,55 +105,60 @@
     <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"
         alt="User Image">
       <div>
-        <p class="app-sidebar__user-name">John Doe</p>
+        <p class="app-sidebar__user-name"></p>
         <p class="app-sidebar__user-designation">Frontend Developer</p>
       </div>
     </div>
-    <ul class="app-menu">
-      <li><a class="app-menu__item active" href="#"  onclick="jump('index.html')"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span
-            class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-        <ul class="treeview-menu">
-          <li><a class="treeview-item" href="#" onclick="jump('ui-cards.html')"><i class="icon fa fa-circle-o"></i> Cards</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('widgets.html')"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
-        </ul>
-      </li>
-      <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span
-            class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-        <ul class="treeview-menu">
-          <li><a class="treeview-item" href="#" onclick="jump('form-components.html')"><i class="icon fa fa-circle-o"></i> Form Components</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('form-custom.html')"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('form-samples.html')"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('form-notifications.html')"><i class="icon fa fa-circle-o"></i> Form
-              Notifications</a></li>
-        </ul>
-      </li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span
-            class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-        <ul class="treeview-menu">
-          <li><a class="treeview-item" href="#"  onclick="jump('table-basic.html')"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
-          <li><a class="treeview-item" href="#"  onclick="jump('table-data-table.html')"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
-        </ul>
-      </li>
-      <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span
-            class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-        <ul class="treeview-menu">
-          <li><a class="treeview-item" href="#" onclick="jump('blank-page.html')"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('page-login.html')"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('page-lockscreen.html')"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('page-user.html')"><i class="icon fa fa-circle-o"></i> User Page</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('page-invoice.html')"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('page-calendar.html')"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('page-mailbox.html')"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
-          <li><a class="treeview-item" href="#" onclick="jump('page-error.html')"><i class="icon fa fa-circle-o"></i>
-              Error Page</a></li>
-        </ul>
-      </li>
+    <ul class="app-menu" id="app">
+      <!--<li  class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview" ><i class="app-menu__icon fa fa-dashboard"></i><span-->
+              <!--class="app-menu__label">Dashboard</span> <i class="treeview-indicator fa fa-angle-right"></i></a>-->
+        <!--<ul class="treeview-menu">-->
+              <!--<li><a class="treeview-item" href="#" onclick="jump('page-home.html')"><i class="icon fa fa-circle-o"></i>Dashboard</a></li>-->
+        <!--</ul>-->
+      <!--</li>-->
+      <!--<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span-->
+            <!--class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>-->
+        <!--<ul class="treeview-menu">-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('ui-cards.html')"><i class="icon fa fa-circle-o"></i> Cards</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('widgets.html')"><i class="icon fa fa-circle-o"></i> Widgets</a></li>-->
+        <!--</ul>-->
+      <!--</li>-->
+      <!--<li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>-->
+      <!--<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span-->
+            <!--class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>-->
+        <!--<ul class="treeview-menu">-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('form-components.html')"><i class="icon fa fa-circle-o"></i> Form Components</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('form-custom.html')"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('form-samples.html')"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('form-notifications.html')"><i class="icon fa fa-circle-o"></i> Form-->
+              <!--Notifications</a></li>-->
+        <!--</ul>-->
+      <!--</li>-->
+      <!--<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span-->
+            <!--class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>-->
+        <!--<ul class="treeview-menu">-->
+          <!--<li><a class="treeview-item" href="#"  onclick="jump('table-basic.html')"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>-->
+          <!--<li><a class="treeview-item" href="#"  onclick="jump('table-data-table.html')"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>-->
+        <!--</ul>-->
+      <!--</li>-->
+      <!--<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span-->
+            <!--class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>-->
+        <!--<ul class="treeview-menu">-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('blank-page.html')"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('page-login.html')"><i class="icon fa fa-circle-o"></i> Login Page</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('page-lockscreen.html')"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('page-user.html')"><i class="icon fa fa-circle-o"></i> User Page</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('page-invoice.html')"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('page-calendar.html')"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('page-mailbox.html')"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>-->
+          <!--<li><a class="treeview-item" href="#" onclick="jump('page-error.html')"><i class="icon fa fa-circle-o"></i>-->
+              <!--Error Page</a></li>-->
+        <!--</ul>-->
+      <!--</li>-->
     </ul>
   </aside>
 
-  <iframe width="100%" height="500px" id="iframeId" src="page-home.html"></iframe>
+  <iframe width="100%" height="500px" id="iframeId" src="page-wel.html"></iframe>
 
   <!-- Essential javascripts for application to work-->
   <script src="../static/js/jquery-3.2.1.min.js"></script>
@@ -210,24 +215,94 @@
   </script>
   <!-- Google analytics script-->
   <script type="text/javascript">
-    if (document.location.hostname == 'pratikborsadiya.in') {
-      (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-          (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-          m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-      ga('create', 'UA-72504830-1', 'auto');
-      ga('send', 'pageview');
-    }
+      if (document.location.hostname == 'pratikborsadiya.in') {
+          (function (i, s, o, g, r, a, m) {
+              i['GoogleAnalyticsObject'] = r;
+              i[r] = i[r] || function () {
+                  (i[r].q = i[r].q || []).push(arguments)
+              }, i[r].l = 1 * new Date();
+              a = s.createElement(o),
+                  m = s.getElementsByTagName(o)[0];
+              a.async = 1;
+              a.src = g;
+              m.parentNode.insertBefore(a, m)
+          })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+          ga('create', 'UA-72504830-1', 'auto');
+          ga('send', 'pageview');
+      }
 
-    window.onload = function () {
-      $('#iframeId').css({ height: $('.app-sidebar').height() - 5 + 'px' })
-    }
+      window.onload = function () {
+          var token = sessionStorage.getItem("jwtToken");
+          console.log("Bearer "+token)
+          $.ajax({
+              type: "post",//方法类型
+              url: "http://192.168.168.168:8081/menu/dynamicMenuQuery",//url
+              beforeSend: function (request) {
+                  request.setRequestHeader("Authorization", "Bearer "+token);
+              },
+              success: function (result) {
+                  console.log(result);//打印服务端返回的数据(调试用)
+                  var obj = JSON.parse(result)
+                  if (obj.code == '10200') {
+                      console.log(obj.result)
+                      fillUserInfo(obj.result.sysUser);
+                      fillUserMenu(obj.result.sysPermissionList);
+                  }
+              },
+              error: function (e) {
+                  alert("获取用户菜单失败!")
+              }
+          });
+          $('#iframeId').css({height: $('.app-sidebar').height() - 5 + 'px'})
+      }
 
-    function jump(page) {
-      $("#iframeId").attr("src", page);
-    }
+      function jump(page) {
+          $("#iframeId").attr("src", page);
+      }
+
+      function logoutFun() {
+          sessionStorage.removeItem('jwtToken');
+          window.location.href="page-login.html";
+      }
+
+      function fillUserInfo(userInfo) {
+          $(".app-sidebar__user-name").text(userInfo.userName);
+          $(".app-sidebar__user-designation").text(userInfo.userCode);
+      }
+
+      function fillUserMenu(menuList) {
+         //  var li = document.createElement("li");
+         //  li.className = "treeview";
+         //  var a = document.createElement("a");
+         //  a.className = "app-menu__item";
+         //  a.setAttribute = ("href","#");
+         //  a.setAttribute = ("data-toggle","treeview");
+         //  var i = document.createElement("i");
+         //  i.className = "app-menu__icon fa fa-dashboard";
+         //  var span = document.createElement("span");
+         //  span.className = "app-menu__label";
+         // // span.innerHTML  = "Dashboard";
+         //  span.append("Dashboard")
+         //  var i2 = document.createElement("i");
+         //  i2.className = "treeview-indicator fa fa-angle-right";
+         //  li.appendChild(a);
+         //  a.appendChild(i);
+         //  i.append(span);
+         //  span.append(i2);
+
+          // var h1 = '<li  class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview" ><i class="app-menu__icon fa fa-dashboard"></i><span';
+          // var h2 = 'class="app-menu__label">Dashboard</span> <i class="treeview-indicator fa fa-angle-right"></i></a>";
+          // var h3 = '<ul class="treeview-menu">';
+          // var h4 = '<li><a class="treeview-item" href="#" onclick="jump('page-home.html')"><i class="icon fa fa-circle-o"></i>Dashboard</a></li>';
+          // var h5 = '</ul></li>';
+          var str = '<li  class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview" ><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span><i class="treeview-indicator fa fa-angle-right"></i></a><ul class="treeview-menu"><li><a class="treeview-item" href="#" onclick="jump(\'page-home.html\')"><i class="icon fa fa-circle-o"></i>Dashboard</a></li></ul></li>';
+
+
+          $("#app").appendChild(str);
+
+
+        //  $("#app").html(str);
+      }
   </script>
 </body>
 </html>
