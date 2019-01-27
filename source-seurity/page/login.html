@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="en-US">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<title>Web 2.0 Login Form by Azmind.com</title>
+
+	<!--- CSS --->
+	<link rel="stylesheet" href="../static/css/style.css" type="text/css" />
+
+
+
+		<script type="text/javascript" src="../static/js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="../static/js/selectivizr.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="../static/css/fallback.css"/>
+		</noscript>
+	</head>
+
+	<body>
+		<div id="container">
+			<form action="/authenticate" method="post">
+				<div class="login">LOGIN</div>
+				<div class="username-text">Username:</div>
+				<div class="password-text">Password:</div>
+				<div class="username-field">
+					<input type="text" name="username" id="username"  />
+				</div>
+				<div class="password-field">
+					<input type="password" name="password" id="password"  />
+				</div>
+				<input type="checkbox" name="remember-me" id="remember-me" /><label for="remember-me">Remember me</label>
+				<div class="forgot-usr-pwd">Forgot <a href="#">username</a> or <a href="#">password</a>?</div>
+				<input name="submit"  id="loginBtn" type="submit"  value="登陆" />
+				<a name="submit"  href="/signOut" >退出</a>
+			</form>
+		</div>
+	</body>
+	<!--<script type="text/javascript">-->
+		<!--$('#loginBtn').click(function () {-->
+			<!--var username = $('#username').val();-->
+			<!--var password = $('#password').val();-->
+			<!--$.ajax({-->
+				<!--url: "/login",-->
+				<!--type: "post",-->
+				<!--data: {-->
+					<!--"username": username,-->
+					<!--"password": password-->
+				<!--},-->
+				<!--success: function (data) {-->
+					<!--alert("成功")-->
+				<!--},-->
+				<!--error: function (data) {-->
+					<!--console.log(data)-->
+				<!--}-->
+			<!--})-->
+		<!--})-->
+	<!--</script>-->
+</html>
+
+
