@@ -110,12 +110,12 @@
       </div>
     </div>
     <ul class="app-menu" id="app">
-      <!--<li  class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview" ><i class="app-menu__icon fa fa-dashboard"></i><span-->
-              <!--class="app-menu__label">Dashboard</span> <i class="treeview-indicator fa fa-angle-right"></i></a>-->
+      <li  class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview" ><span
+              class="app-menu__label">Dashboard</span> <i class="treeview-indicator fa fa-angle-right"></i></a>
         <!--<ul class="treeview-menu">-->
               <!--<li><a class="treeview-item" href="#" onclick="jump('page-home.html')"><i class="icon fa fa-circle-o"></i>Dashboard</a></li>-->
         <!--</ul>-->
-      <!--</li>-->
+      </li>
       <!--<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span-->
             <!--class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>-->
         <!--<ul class="treeview-menu">-->
@@ -158,8 +158,14 @@
     </ul>
   </aside>
 
-  <iframe width="100%" height="500px" id="iframeId" src="page-wel.html"></iframe>
+  <!--<iframe width="100%" height="500px" id="iframeId" src="page-wel.html"></iframe>-->
 
+  <main class="app-content">
+    <div class="page-error tile">
+      <div class="menu">
+      </div>
+    </div>
+  </main>
   <!-- Essential javascripts for application to work-->
   <script src="../static/js/jquery-3.2.1.min.js"></script>
   <script src="../static/js/popper.min.js"></script>
@@ -233,18 +239,15 @@
 
       window.onload = function () {
           var token = sessionStorage.getItem("jwtToken");
-          console.log("Bearer "+token)
           $.ajax({
               type: "post",//方法类型
-              url: "http://192.168.168.168:8081/menu/dynamicMenuQuery",//url
+              url: "http://192.168.168.168:8888/menu/dynamicMenuQuery",//url
               beforeSend: function (request) {
                   request.setRequestHeader("Authorization", "Bearer "+token);
               },
               success: function (result) {
-                  console.log(result);//打印服务端返回的数据(调试用)
                   var obj = JSON.parse(result)
                   if (obj.code == '10200') {
-                      console.log(obj.result)
                       fillUserInfo(obj.result.sysUser);
                       fillUserMenu(obj.result.sysPermissionList);
                   }
@@ -271,37 +274,14 @@
       }
 
       function fillUserMenu(menuList) {
-         //  var li = document.createElement("li");
-         //  li.className = "treeview";
-         //  var a = document.createElement("a");
-         //  a.className = "app-menu__item";
-         //  a.setAttribute = ("href","#");
-         //  a.setAttribute = ("data-toggle","treeview");
-         //  var i = document.createElement("i");
-         //  i.className = "app-menu__icon fa fa-dashboard";
-         //  var span = document.createElement("span");
-         //  span.className = "app-menu__label";
-         // // span.innerHTML  = "Dashboard";
-         //  span.append("Dashboard")
-         //  var i2 = document.createElement("i");
-         //  i2.className = "treeview-indicator fa fa-angle-right";
-         //  li.appendChild(a);
-         //  a.appendChild(i);
-         //  i.append(span);
-         //  span.append(i2);
+          var str = '';
+          menuList.forEach(function (val,index) {
 
-          // var h1 = '<li  class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview" ><i class="app-menu__icon fa fa-dashboard"></i><span';
-          // var h2 = 'class="app-menu__label">Dashboard</span> <i class="treeview-indicator fa fa-angle-right"></i></a>";
-          // var h3 = '<ul class="treeview-menu">';
-          // var h4 = '<li><a class="treeview-item" href="#" onclick="jump('page-home.html')"><i class="icon fa fa-circle-o"></i>Dashboard</a></li>';
-          // var h5 = '</ul></li>';
-          var str = '<li  class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview" ><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span><i class="treeview-indicator fa fa-angle-right"></i></a><ul class="treeview-menu"><li><a class="treeview-item" href="#" onclick="jump(\'page-home.html\')"><i class="icon fa fa-circle-o"></i>Dashboard</a></li></ul></li>';
-
-
-          $("#app").appendChild(str);
-
-
-        //  $("#app").html(str);
+              if(val) {
+                  str += '<li>' + val.name + '</li>';
+              }
+          });
+          $(".menu").html(str);
       }
   </script>
 </body>
